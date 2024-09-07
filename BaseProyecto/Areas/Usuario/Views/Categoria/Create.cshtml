@@ -1,0 +1,31 @@
+﻿@model Base.Models.Categoria
+
+@{
+    ViewData["Title"] = "Crear Nueva Categoría";
+}
+
+<h2>Crear Nueva Categoría</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Nombre" class="control-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Habilitada" class="control-label"></label>
+        <input asp-for="Habilitada" class="form-control" />
+        <span asp-validation-for="Habilitada" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-3">
+        <input type="submit" value="Guardar" class="btn btn-primary" />
+    </div>
+</form>
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
