@@ -19,6 +19,5 @@ namespace Base.Models
 
         public int? Habilitada { get; set; }
 
-        public ICollection<Articulo>Articulos { get; set; }=new List<Articulo>();
     }
 }

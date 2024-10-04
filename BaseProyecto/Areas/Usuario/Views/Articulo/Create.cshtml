@@ -1,0 +1,41 @@
+﻿@model BaseProyecto.ViewModels.ArticuloVM
+
+@{
+    ViewData["Title"] = "Crear Nuevo Articulo";
+}
+
+<h2>Crear Nueva Categoría</h2>
+
+<form asp-controller="Articulo" asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Articulo.Nombre" class="control-label"></label>
+        <input asp-for="Articulo.Nombre" class="form-control" />
+        <span asp-validation-for="Articulo.Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Articulo.habilitado" class="control-label"></label>
+        <select asp-for="Articulo.habilitado" class="form-control">
+            <option value="1">Habilitado</option>
+            <option value="0">Deshabilitado</option>
+        </select>
+        <span asp-validation-for="Articulo.habilitado" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Articulo.CategoriaId" class="control-label"></label>
+        @Html.DropDownListFor(m => m.Articulo.CategoriaId, Model.ListaCategoria,
+                 "-Seleccionar categoría-", new { @class = "form-control" })
+        <span asp-validation-for="Articulo.CategoriaId" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-3">
+        <input type="submit" value="Guardar" class="btn btn-primary" />
+    </div>
+</form>
+
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Volver al listado</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

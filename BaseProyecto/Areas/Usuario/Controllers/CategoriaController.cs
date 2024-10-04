@@ -25,6 +25,8 @@ namespace BaseProyecto.Areas.Usuario.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+
+
             return View();
         }
 
@@ -64,6 +66,20 @@ namespace BaseProyecto.Areas.Usuario.Controllers
                 return NotFound();
             }
             return View(categoria);
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var categoria = _contenedorTrabajo.Categoria.Get(id);
+            if (categoria == null)
+            {
+                return Json(new { success = false, message = "Error al eliminar la categoría" });
+            }
+
+            _contenedorTrabajo.Categoria.Remove(categoria);
+            _contenedorTrabajo.Save();
+            return Json(new { success = true, message = "Categoría eliminada exitosamente" });
         }
 
     }

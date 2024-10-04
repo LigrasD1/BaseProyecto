@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Base.Data.Data.Repository
 {
     public class CategoriaRepository : Repository<Categoria>, ICategoriaRepository
@@ -16,6 +16,16 @@ namespace Base.Data.Data.Repository
         {
            _context = context;
         }
+
+        public IEnumerable<SelectListItem> GetListaCategoria()
+        {
+            return _context.Categoria.Select(i => new SelectListItem()
+            {
+                Text= i.Nombre,
+                Value= i.Id.ToString()
+            });
+        }
+
         public void Update(Categoria categoria)
         {
             Categoria objbaseDatos = _context.Categoria.FirstOrDefault(x=>x.Id==categoria.Id);
