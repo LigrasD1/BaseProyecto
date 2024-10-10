@@ -18,7 +18,6 @@
                 "render": function (data) {
                     return `
                         <a href="/Usuario/Categoria/Edit/${data}" class="btn btn-warning">Editar</a>
-                        <a href="/Usuario/Categoria/Details/${data}" class="btn btn-info">Detalles</a>
                         <a onClick="DeleteCategory(${data})" class="btn btn-danger">Eliminar</a>`;;
                 }
             }

@@ -20,7 +20,7 @@ namespace BaseProyecto.Areas.Usuario.Controllers
         }
         public IActionResult GetAll()
         {
-            var art = _contenedorTrabajo.Articulo.GetAll();
+            var art = _contenedorTrabajo.Articulo.GetAll(includeProperties:"Categoria");
             return Json(new { data =  art});
         }
 
@@ -82,12 +82,12 @@ namespace BaseProyecto.Areas.Usuario.Controllers
             var articulo = _contenedorTrabajo.Articulo.Get(id);
             if (articulo == null)
             {
-                return Json(new { success = false, message = "Error al eliminar la categoría" });
+                return Json(new { success = false, message = "Error al eliminar el Articulo" });
             }
 
             _contenedorTrabajo.Articulo.Remove(articulo);
             _contenedorTrabajo.Save();
-            return Json(new { success = true, message = "Categoría eliminada exitosamente" });
+            return Json(new { success = true, message = "Articulo eliminada exitosamente" });
         }
 
     }

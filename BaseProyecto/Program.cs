@@ -44,7 +44,7 @@ namespace BaseProyecto
 
 			app.MapControllerRoute(
 				name: "default",
-				pattern: "{area=Usuario}/{controller=Categoria}/{action=Index}/{id?}");
+				pattern: "{area=Cliente}/{controller=Articulo}/{action=Index}/{id?}");
 			app.MapRazorPages();
 
 			app.Run();
