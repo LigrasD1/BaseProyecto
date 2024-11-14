@@ -1,0 +1,26 @@
+﻿/* Establecer un tamaño fijo para las imágenes */
+.card-img-top {
+    width: 100%;
+    height: 200px; /* Ajusta la altura según lo que necesites */
+    object-fit: cover; /* Para asegurar que la imagen se recorte si es más grande */
+}
+
+/* Ajustar las tarjetas para que tengan el mismo tamaño */
+.card {
+    height: 350px; /* Ajusta según el contenido de la tarjeta */
+}
+
+/* Para que las tarjetas mantengan un diseño uniforme en una fila */
+#productos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Hacer que cada tarjeta ocupe un tamaño similar */
+.col-md-4 {
+    display: flex;
+    justify-content: space-between;
+    flex: 0 0 33%; /* Tres columnas en dispositivos medianos */
+    max-width: 33%;
+}

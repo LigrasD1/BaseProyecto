@@ -42,10 +42,15 @@ namespace BaseProyecto.Areas.Usuario.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(ArticuloVM ArtiVM)
+        public IActionResult Create(ArticuloVM ArtiVM, IFormFile file)
         {
+            
             if (ModelState.IsValid)
             {
+                if (file != null && file.Length > 0)
+                {
+                    ArtiVM.Articulo.Imagen = GuardarImagen(file);
+                }
                 _contenedorTrabajo.Articulo.Add(ArtiVM.Articulo);
                 _contenedorTrabajo.Save();
                 return RedirectToAction(nameof(Index));
@@ -57,10 +62,14 @@ namespace BaseProyecto.Areas.Usuario.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Articulo articulo)
+        public ActionResult Edit(Articulo articulo, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
+                if (file != null && file.Length > 0)
+                {
+                    articulo.Imagen = GuardarImagen(file);
+                }
                 _contenedorTrabajo.Articulo.Update(articulo);
                 _contenedorTrabajo.Save();
                 return RedirectToAction("Index");
@@ -92,6 +101,40 @@ namespace BaseProyecto.Areas.Usuario.Controllers
             _contenedorTrabajo.Articulo.Remove(articulo);
             _contenedorTrabajo.Save();
             return Json(new { success = true, message = "Articulo eliminada exitosamente" });
+        }
+
+        private string GuardarImagen(IFormFile formFile)
+        {
+
+            if (formFile != null && formFile.Length > 0)
+            {
+                // Generar una ruta única para la imagen
+                var fileName = Path.GetFileNameWithoutExtension(formFile.FileName);
+                var extension = Path.GetExtension(formFile.FileName);
+                var uniqueFileName = $"{fileName}_{Guid.NewGuid()}{extension}";
+
+                // Ruta de almacenamiento en el sistema de archivos
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+                if (!Directory.Exists(uploadsFolder)) //Si el directorio no existe crear uno
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                // Guardar la imagen en el servidor
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    formFile.CopyToAsync(stream);
+                }
+
+                // Asignar la ruta de la imagen al producto
+                return $"/Uploads/{uniqueFileName}";
+
+
+            }
+
+            return "/Uploads/default.jpeg";
         }
 
     }

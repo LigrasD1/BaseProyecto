@@ -8,6 +8,7 @@
         "columns": [
             { "data": "id" },
             { "data": "nombre" },
+            { "data": "precio"},
             {
                 "data": "habilitado", "render": function (data) {
                     return data ? "Sí" : "No";

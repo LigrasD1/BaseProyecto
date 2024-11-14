@@ -6,11 +6,16 @@
 
 <h2>Crear Nueva Categoría</h2>
 
-<form asp-controller="Articulo" asp-action="Create" method="post">
+<form asp-controller="Articulo" asp-action="Create" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label asp-for="Articulo.Nombre" class="control-label"></label>
         <input asp-for="Articulo.Nombre" class="form-control" />
         <span asp-validation-for="Articulo.Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Articulo.precio" class="control-label"></label>
+        <input asp-for="Articulo.precio" class="form-control" />
+        <span asp-validation-for="Articulo.precio" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Articulo.habilitado" class="control-label"></label>
@@ -25,6 +30,10 @@
         @Html.DropDownListFor(m => m.Articulo.CategoriaId, Model.ListaCategoria,
                  "-Seleccionar categoría-", new { @class = "form-control" })
         <span asp-validation-for="Articulo.CategoriaId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="file">Subir Imagen</label>
+        <input type="file" class="form-control" id="file" name="file" />
     </div>
     <div class="form-group mt-3">
         <input type="submit" value="Guardar" class="btn btn-primary" />

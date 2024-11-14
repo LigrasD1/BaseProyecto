@@ -10,11 +10,11 @@
                 Lista de articulos
             </h2>
         </div>
-        <div class="col-4">
-            <button onclick="printTable()" class="btn btn-primary mt-3">
+        <div class="col-4 text-end mb-2">
+            <button onclick="printTable()" class="btn btn-primary mt-3 me-2">
                 Imprimir Tabla
             </button>
-            <a asp-action="Create" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Nuevo Articulo</a>
+            <a asp-action="Create" class="btn btn-primary mt-3"><i class="fa-solid fa-plus"></i>Nuevo Articulo</a>
         </div>
     </div>
     <br />
@@ -25,6 +25,7 @@
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
+                <th>Precio</th>
                 <th>Habilitado</th>
                 <th>Categoria</th>
                 <th>Operaciones</th>

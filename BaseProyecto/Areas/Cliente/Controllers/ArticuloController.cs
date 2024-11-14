@@ -1,5 +1,6 @@
 ﻿using Base.Data.Data.Repository;
 using Base.Data.Data.Repository.IRepository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BaseProyecto.Areas.Cliente.Controllers
@@ -10,9 +11,12 @@ namespace BaseProyecto.Areas.Cliente.Controllers
     {
 
         private readonly IContenedorTrabajo _contenedorTrabajo;
-        public ArticuloController(IContenedorTrabajo contenedor)
+        private readonly IHttpContextAccessor httpContextAccessor;
+
+        public ArticuloController(IContenedorTrabajo contenedor, IHttpContextAccessor contextAccessor)
         {
-            _contenedorTrabajo = contenedor;       
+            _contenedorTrabajo = contenedor;
+            httpContextAccessor = contextAccessor;
         }
         public IActionResult Index()
         {
@@ -20,7 +24,14 @@ namespace BaseProyecto.Areas.Cliente.Controllers
         }
         public IActionResult GetAll()
         {
-            var art = _contenedorTrabajo.Articulo.GetAll(includeProperties: "Categoria");
+            var art = _contenedorTrabajo.Articulo.GetAll(includeProperties: "Categoria").Where(A=>A.habilitado==1);
+            foreach (var item in art)
+            {
+                var request = httpContextAccessor.HttpContext.Request;
+                var baseURL = $"{request.Scheme}://{request.Host}";
+                item.Imagen = $"{baseURL}{item.Imagen}";
+            }
+            
             return Json(new { data = art });
         }
     }

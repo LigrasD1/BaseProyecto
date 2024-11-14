@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Base.Data.Data.Repository.IRepository;
 using Base.Data.Data.Repository;
 using Base.Models;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.Extensions.FileProviders;
 
 namespace BaseProyecto
 {
@@ -12,6 +14,10 @@ namespace BaseProyecto
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.Configure<FormOptions>(options =>
+            {
+                options.MultipartBodyLengthLimit = 104857600; // 100 MB
+            });
 
             // Cadena de conexión a la base de datos
             var connectionString = builder.Configuration.GetConnectionString("Conexion")
@@ -67,6 +73,17 @@ namespace BaseProyecto
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            var uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            if (!Directory.Exists(uploadsPath))
+            {
+                Directory.CreateDirectory(uploadsPath);
+            }
+            app.UseStaticFiles(new StaticFileOptions //PERMISOS
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Uploads")),
+                RequestPath = "/Uploads"
+            });
             app.UseStaticFiles();
 
             app.UseRouting();

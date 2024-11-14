@@ -22,6 +22,12 @@ namespace Base.Data.Data.Repository
             Articulo objbaseDatos =  _context.Articulo.FirstOrDefault(x => x.Id == articulo.Id);
             objbaseDatos.Nombre = articulo.Nombre;
             objbaseDatos.habilitado = articulo.habilitado;
+            objbaseDatos.precio = articulo.precio;
+            if(articulo.Imagen!=null && articulo.Imagen.Length>0)objbaseDatos.Imagen = articulo.Imagen;
+
+            objbaseDatos.CategoriaId = articulo.CategoriaId;
+
+
             _context.SaveChanges();
         }
     }

@@ -17,6 +17,8 @@ namespace Base.Models
         public string? Nombre { get; set; }
         //public string? ImagenLink { get; set; }
         public int habilitado { get; set; }
+        public string? Imagen { get; set; }
+        public int? precio { get; set; }
 
         public int CategoriaId {  get; set; }
         [ForeignKey(nameof(CategoriaId))]

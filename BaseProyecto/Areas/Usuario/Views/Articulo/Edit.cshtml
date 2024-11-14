@@ -6,11 +6,16 @@
 
 <h2>Crear Nueva Categoría</h2>
 
-<form asp-action="Edit" method="post">
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label asp-for="Nombre" class="control-label"></label>
         <input asp-for="Nombre" class="form-control" />
         <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="precio" class="control-label"></label>
+        <input asp-for="precio" class="form-control" />
+        <span asp-validation-for="precio" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="habilitado" class="control-label"></label>
@@ -21,6 +26,10 @@
         <label asp-for="CategoriaId" class="control-label"></label>
         <input asp-for="CategoriaId" class="form-control" />
         <span asp-validation-for="CategoriaId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="file">Subir Imagen</label>
+        <input type="file" class="form-control" id="file" name="file" />
     </div>
     <div class="form-group mt-3">
         <input type="submit" value="Guardar" class="btn btn-primary" />
