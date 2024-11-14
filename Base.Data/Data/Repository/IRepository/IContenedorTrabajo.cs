@@ -8,7 +8,7 @@ namespace Base.Data.Data.Repository.IRepository
 {
     public interface IContenedorTrabajo : IDisposable
     {
-
+       public IUsuarioRepository Usuario { get; }
        public ICategoriaRepository Categoria { get; }
        public IArticuloRepository Articulo { get; }
         void Save();

@@ -12,11 +12,13 @@ namespace Base.Data.Data.Repository
         private readonly ApplicationDbContext _context;
         public ICategoriaRepository Categoria { get; private set; }
         public IArticuloRepository Articulo { get; private set; }
-        public ContenedorTrabajo(ApplicationDbContext context)
+        public IUsuarioRepository Usuario { get; private set; }
+        public ContenedorTrabajo(ApplicationDbContext context, ICategoriaRepository categoriaRepository, IArticuloRepository articuloRepository, IUsuarioRepository usuarioRepository)
         {
             _context = context; 
             Categoria=new CategoriaRepository(_context);
             Articulo=new ArticuloRepository(_context);
+            Usuario=new UsuarioRepository(_context);
         }
         public void Dispose()
         {

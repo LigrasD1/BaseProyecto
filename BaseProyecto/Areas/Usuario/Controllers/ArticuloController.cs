@@ -1,19 +1,23 @@
 ﻿using Base.Data.Data.Repository.IRepository;
 using Base.Models;
 using BaseProyecto.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace BaseProyecto.Areas.Usuario.Controllers
 {
     [Area ("Usuario")]
-    public class ArticuloController : Controller
+	[Authorize(Roles = "Administrador")]
+
+	public class ArticuloController : Controller
     {
         private readonly IContenedorTrabajo _contenedorTrabajo;
         public ArticuloController(IContenedorTrabajo Contenedor)
         {
             _contenedorTrabajo = Contenedor;
         }
+
         public IActionResult Index()
         {
             return View();
@@ -29,7 +33,7 @@ namespace BaseProyecto.Areas.Usuario.Controllers
         {
             ArticuloVM articuloVM = new ArticuloVM()
             {
-                Articulo = new Base.Models.Articulo(),
+                Articulo = new Articulo(),
                 ListaCategoria = _contenedorTrabajo.Categoria.GetListaCategoria()
             };
 

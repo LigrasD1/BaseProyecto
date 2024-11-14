@@ -15,7 +15,7 @@ namespace Base.Models
         [Required(ErrorMessage = "Agregue el nombre del articulo")]
         [StringLength(50)]
         public string? Nombre { get; set; }
-      
+        //public string? ImagenLink { get; set; }
         public int habilitado { get; set; }
 
         public int CategoriaId {  get; set; }

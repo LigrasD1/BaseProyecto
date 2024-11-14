@@ -2,11 +2,14 @@
 using Base.Data.Data.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Base.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BaseProyecto.Areas.Usuario.Controllers
 {
     [Area("Usuario")]
-    public class CategoriaController : Controller
+	[Authorize(Roles = "Administrador")]
+
+	public class CategoriaController : Controller
     {
         private readonly IContenedorTrabajo _contenedorTrabajo;
         public CategoriaController(IContenedorTrabajo Contenedor)
@@ -23,7 +26,7 @@ namespace BaseProyecto.Areas.Usuario.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+		public IActionResult Create()
         {
 
 
@@ -32,7 +35,8 @@ namespace BaseProyecto.Areas.Usuario.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Categoria categoria)
+
+		public IActionResult Create(Categoria categoria)
         {
             if (ModelState.IsValid)
             {

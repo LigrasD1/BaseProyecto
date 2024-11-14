@@ -1,8 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-}
+
 <div class="container mt-4">
     <div class="row">
         <div class="col-8">
@@ -11,6 +10,9 @@
             </h2>
         </div>
         <div class="col-4">
+            <button onclick="printTable()" class="btn btn-primary mt-3">
+                Imprimir Tabla
+            </button>
             <a asp-action="Create" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Nueva categoria</a>
         </div>
     </div>

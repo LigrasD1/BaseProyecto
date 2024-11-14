@@ -17,7 +17,6 @@ function cargarProductos() {
                             <img src="${producto.imagenUrl}" class="card-img-top" alt="Imagen del producto" />
                             <div class="card-body">
                                 <h5 class="card-title">${producto.nombre}</h5>
-                                <p class="card-text">${producto.descripcion}</p>
                                 <p class="card-text"><strong>Habilitado:</strong> ${producto.habilitado ? 'Sí' : 'No'}</p>
                                 <p class="card-text"><strong>Categoría:</strong> ${producto.categoria.nombre}</p>
                             </div>
