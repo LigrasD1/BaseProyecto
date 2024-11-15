@@ -14,5 +14,7 @@ namespace Base.Data
 		public DbSet<Usuario> Usuarios { get; set; }
 		public DbSet<Categoria>Categoria {  get; set; }
 		public DbSet<Articulo> Articulo { get; set; }
+		public DbSet<Carrito> Carrito { get; set; }
+		public DbSet<CarritoArticulo> carritoArticulos { get; set; }		
 	}
 }

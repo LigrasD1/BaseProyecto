@@ -3,7 +3,7 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "Registrarse";
-}U
+}
 
 <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
     <div class="card shadow-lg p-4" style="width: 24rem; background-color: #f8f9fa; border-radius: 15px;">
@@ -41,14 +41,16 @@
                     <label asp-for="Input.Edad">Edad</label>
                     <span asp-validation-for="Input.Edad" class="text-danger"></span>
                 </div>
-                    
-                        <div class="from-group row">
+                @if (User.IsInRole(Rol.Administrador))
+                {
+                     <div class="from-group row">
                             <div class="col-6"><h4>Seleccionar Rol de usuario</h4></div>
                             <div class="col-5">
                                 <input type="radio" name="radUsuarioRole" value="@Rol.Administrador" />@Rol.Administrador
                                 <input type="radio" name="radUsuarioRole" value="@Rol.Registrado" />@Rol.Registrado
                             </div>
                         </div>
+                }             
                 
 
                 <button id="registerSubmit" type="submit" class="btn btn-primary w-100 btn-lg">Registrarse</button>

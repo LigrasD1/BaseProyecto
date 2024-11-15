@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.5/sweetalert2.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
 </head>
 <body>
     <header>
@@ -30,6 +32,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Cliente" asp-controller="Articulo" asp-action="Index">Articulos</a>
                             </li>
+                            
                         }
                         @if (User.IsInRole("Administrador"))
                         {
@@ -43,7 +46,13 @@
                                 <a class="nav-link text-dark" asp-area="Usuario" asp-controller="Categoria" asp-action="Index">Categoria</a>
                             </li>
                         }
-                        
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Cliente" asp-controller="Carrito" asp-action="Index">Carrito</a>
+                            </li>
+                        }
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

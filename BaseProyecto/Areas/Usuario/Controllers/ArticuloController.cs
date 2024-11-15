@@ -45,8 +45,6 @@ namespace BaseProyecto.Areas.Usuario.Controllers
         public IActionResult Create(ArticuloVM ArtiVM, IFormFile file)
         {
             
-            if (ModelState.IsValid)
-            {
                 if (file != null && file.Length > 0)
                 {
                     ArtiVM.Articulo.Imagen = GuardarImagen(file);
@@ -54,7 +52,6 @@ namespace BaseProyecto.Areas.Usuario.Controllers
                 _contenedorTrabajo.Articulo.Add(ArtiVM.Articulo);
                 _contenedorTrabajo.Save();
                 return RedirectToAction(nameof(Index));
-            }
             
             ArtiVM.ListaCategoria = _contenedorTrabajo.Categoria.GetListaCategoria();
             return View(ArtiVM);

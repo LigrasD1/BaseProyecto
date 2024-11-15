@@ -12,8 +12,13 @@
 			<button onclick="printTable()" class="btn btn-primary mt-3 me-2" >
 				Imprimir Tabla
 			</button>
-			<a asp-action="Create" class="btn btn-primary mt-3"><i class="fa-solid fa-plus"></i>Nuevo usuario</a>
-		</div>
+			<a asp-area="Identity"
+			   asp-controller="Account"
+			   asp-action="Register"
+			   class="btn btn-primary mt-3">
+				<i class="fa-solid fa-plus"></i> Nuevo usuario
+			</a>
+	</div>
 	</div>
 	<div>
 		@if (Model.Count() > 0)

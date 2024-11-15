@@ -11,6 +11,8 @@ namespace Base.Data.Data.Repository.IRepository
        public IUsuarioRepository Usuario { get; }
        public ICategoriaRepository Categoria { get; }
        public IArticuloRepository Articulo { get; }
+       public ICarritoRepository Carrito { get; }
+       public ICarritoArticuloRepository CarritoArticulo { get; }
         void Save();
     }
 }

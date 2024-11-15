@@ -47,7 +47,7 @@ namespace BaseProyecto
             builder.Services.ConfigureApplicationCookie(options =>
             {
                 options.LogoutPath = "/Cliente/Articulo";
-                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.AccessDeniedPath = "/Cliente/Articulo";
                 options.Events.OnRedirectToLogout = context =>
                 {
                     context.Response.Redirect("/Home/Index"); // Ruta de redirección predeterminada después de logout

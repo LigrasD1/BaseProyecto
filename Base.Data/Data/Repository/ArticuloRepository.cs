@@ -23,6 +23,7 @@ namespace Base.Data.Data.Repository
             objbaseDatos.Nombre = articulo.Nombre;
             objbaseDatos.habilitado = articulo.habilitado;
             objbaseDatos.precio = articulo.precio;
+            objbaseDatos.cantidad = articulo.cantidad;
             if(articulo.Imagen!=null && articulo.Imagen.Length>0)objbaseDatos.Imagen = articulo.Imagen;
 
             objbaseDatos.CategoriaId = articulo.CategoriaId;

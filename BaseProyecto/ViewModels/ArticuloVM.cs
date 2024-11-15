@@ -7,5 +7,6 @@ namespace BaseProyecto.ViewModels
     {
         public Articulo Articulo { get; set; }
         public IEnumerable<SelectListItem>? ListaCategoria { get; set; }
+        public IEnumerable<SelectListItem>? ListaCarritoArticulo { get; set; }
     }
 }

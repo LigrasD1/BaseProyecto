@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Base.Models
@@ -19,9 +20,11 @@ namespace Base.Models
         public int habilitado { get; set; }
         public string? Imagen { get; set; }
         public int? precio { get; set; }
+        public int? cantidad { get; set; }
 
         public int CategoriaId {  get; set; }
         [ForeignKey(nameof(CategoriaId))]
-        public Categoria? Categoria { get; set; } 
+        public Categoria? Categoria { get; set; }
+
     }
 }
